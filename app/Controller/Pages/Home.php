@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Controller\Pages;
+
+use \App\Utils\View;
+use \App\Models\Entity\Organization;
+
+class Home extends Page{
+
+    public static function getHome(){
+        $obOrganization = new Organization();
+
+        $content = view::render('pages/home',[
+            'name' => $obOrganization->name,
+            'description' => $obOrganization->description,
+        ]);
+        return parent::getPage('WDEV - Canal - HOME', $content);
+    }
+
+}

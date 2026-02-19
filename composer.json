@@ -1,0 +1,10 @@
+{
+	"name":"anubis/etecgamesremake",
+	"autoload":{
+	"psr-4":{
+			"App\\":"app/"
+		}
+	}
+
+}
+
