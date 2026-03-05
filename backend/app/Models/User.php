@@ -30,4 +30,9 @@ class User extends Model
     {
         return $this->belongsTo(School::class, 'school_id');
     }
+
+    public function game()
+    {
+        return $this->hasMany(Game::class, 'user_id');
+    }
 }

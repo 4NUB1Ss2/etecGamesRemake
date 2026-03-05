@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,9 +29,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+
     }
 
     /**
@@ -38,25 +39,36 @@ class UserController extends Controller
      */
     public function show(Request $request, string $id)
     {
-        $school_id = $request->school_id;
-        if ($school_id) {
-            $users = User::with('school')->where('school_id', $school_id)->get();
-            $school = School::findOrFail($school_id);
-
+//        $school_id = $request->school_id;
+//        if ($school_id) {
+//            $users = User::with('school')->where('school_id', $school_id)->get();
+//            $school = School::findOrFail($school_id);
+//
+//            return Response()->json([
+//                'users' => $users->map(function ($users) {
+//                    return [
+//                        'id' => $users->id,
+//                        'username' => $users->username,
+//                        'email' => $users->email,
+//                        'nome' => $users->name,
+//
+//                    ];
+//                }),
+//                'school' => $school,
+//            ]);
+//        }
+        try {
+            $users = User::findOrFail($id);
             return Response()->json([
-                'users' => $users->map(function ($users) {
-                    return [
-                        'id' => $users->id,
-                        'username' => $users->username,
-                        'email' => $users->email,
-                        'nome' => $users->name,
-
-                    ];
-                }),
-                'school' => $school,
-            ]);
+                'users' => $users,
+            ], 200);
+        } catch (\Exception $exception) {
+            return Response()->json([
+                'message' => "Nenhum Usuario encontrado",
+            ], 400);
         }
     }
+
 
     /**
      * Update the specified resource in storage.
