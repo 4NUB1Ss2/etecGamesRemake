@@ -18,7 +18,7 @@ class SchoolFactory extends Factory
     {
         return [
             'name' => 'ETEC ' . fake()->company(),
-            'address' => fake()->address(),
+            'address' => str_replace("\n", ", ", fake()->address()),
         ];
     }
 }

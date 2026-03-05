@@ -9,4 +9,9 @@ class Game extends Model
 {
     /** @use HasFactory<\Database\Factories\GameFactory> */
     use HasFactory;
+
+    public function school()
+    {
+        return $this->belongsTo(School::class, 'school_id');
+    }
 }

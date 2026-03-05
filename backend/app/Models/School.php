@@ -11,4 +11,18 @@ class School extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $fillable = [
+        'name',
+        'address',
+    ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function game()
+    {
+        return $this->hasMany(Game::class);
+    }
 }

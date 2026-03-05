@@ -9,4 +9,25 @@ class User extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'username',
+        'email',
+        'password',
+        'name',
+        'school_id',
+    ];
+    protected $hidden = [
+        'password',
+        'created_at',
+        'updated_at',
+
+
+    ];
+
+
+    public function school()
+    {
+        return $this->belongsTo(School::class, 'school_id');
+    }
 }
